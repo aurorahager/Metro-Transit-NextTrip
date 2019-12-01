@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { TransitContext } from "../../context/transit-context";
 import SearchView from './search-view';
 import API from '../../utils/API';
 
@@ -13,7 +14,7 @@ function Search() {
   const [routes, setRoutes] = React.useState([]);
   const [directions, setDirections] = React.useState([]);
   const [stops, setStops] = React.useState([]);
-  const [stop, setStop] = React.useState({ route: '', direction: '', stop: '' });
+  const [stop, setStop] = React.useContext(TransitContext);
 
   const requestAPI = (url, setData) => {
     API.fetchTransitData(url).then(res => {
