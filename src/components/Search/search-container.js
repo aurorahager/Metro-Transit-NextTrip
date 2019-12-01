@@ -1,15 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { TransitContext } from "../../context/transit-context";
+import { TransitContext } from '../../context/transit-context';
+import SearchReducer from '../../reducers/search-reducer';
 import SearchView from './search-view';
 import API from '../../utils/API';
 
 function Search() {
 
   const [toStops, setToStops] = React.useState(false);
-  const [routes, setRoutes] = React.useState([]);
-  const [directions, setDirections] = React.useState([]);
-  const [stops, setStops] = React.useState([]);
+  const [state, dispatch] = React.useReducer(SearchReducer, { routes: [], directions: [], stops: [] });
   const [stop, setStop] = React.useContext(TransitContext);
 
   // run on mount and on change of stop state
@@ -21,13 +20,13 @@ function Search() {
   const handleConditionalData = (routeId, directionId) => {
     // if there is not route or direction data being passed
     if (!routeId && !directionId) {
-      API.fetchTransitData("Routes", setRoutes);
+      API.fetchTransitData('Routes', 'setRoutes', dispatch);
       // if there is just route data
     } else if (routeId && !directionId) {
-      API.fetchTransitData(`Directions/${routeId}`, setDirections);
+      API.fetchTransitData(`Directions/${routeId}`, 'setDirections', dispatch);
       //  if there is both route and direction data
     } else if (routeId && directionId) {
-      API.fetchTransitData(`Stops/${routeId}/${directionId}`, setStops);
+      API.fetchTransitData(`Stops/${routeId}/${directionId}`, 'setStops', dispatch);
     } else {
       return false;
     };
@@ -50,9 +49,9 @@ function Search() {
       {/* redirect on state change */}
       {toStops ? <Redirect to="/stops" /> : null}
       <SearchView
-        routes={routes}
-        directions={directions}
-        stops={stops}
+        routes={state.routes}
+        directions={state.directions}
+        stops={state.stops}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit} />
     </div>

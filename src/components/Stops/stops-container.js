@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TransitContext } from "../../context/transit-context";
+import SearchReducer from '../../reducers/search-reducer';
 import API from '../../utils/API';
 import StopsView from './stops-view';
 
 function Stops() {
 
   const [currentTime, setCurrentTime] = React.useState(new Date().toLocaleTimeString());
-  const [times, setTimes] = React.useState([]);
+  const [state, dispatch] = React.useReducer(SearchReducer, { times: [] });
   const [stop, setStop] = React.useContext(TransitContext);
 
   // fetchTimes on mount and update time every 30 seconds
@@ -29,13 +30,13 @@ function Stops() {
   // get stop times from API
   const fetchTimes = () => {
     const url = `${stop.route}/${stop.direction}/${stop.stop}`;
-    API.fetchTransitData(url, setTimes)
+    API.fetchTransitData(url, 'setTimes', dispatch);
   };
 
   // Render content
   return (
     <div data-test="component-stops">
-      <StopsView currentTime={currentTime} times={times} />
+      <StopsView currentTime={currentTime} times={state.times} />
       {/* reset stop state when navigating back */}
       <Link to="/" onClick={() => setStop({ route: '', direction: '', stop: '' })}>
         Go Back

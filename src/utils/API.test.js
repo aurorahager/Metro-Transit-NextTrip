@@ -16,10 +16,10 @@ describe('moxios tests', () => {
       });
     });
     const mockSetData = jest.fn();
-    await API.fetchTransitData('Routes', mockSetData);
+    await API.fetchTransitData('Routes', 'setRoutes', mockSetData);
     expect(moxios.requests.mostRecent().url).toBe('https://svc.metrotransit.org/NexTrip/Routes?format=json');
   });
-  test('Calls the setData callback when gets response', async () => {
+  test('Calls the dispatch callback when gets a from API response', async () => {
     const transitData = [{ id: 1, direction: 'northbound' }, { id: 2, direction: 'southbound' }]
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -29,7 +29,7 @@ describe('moxios tests', () => {
       });
     });
     const mockSetData = jest.fn();
-    await API.fetchTransitData('Routes', mockSetData);
-    expect(mockSetData).toHaveBeenCalledWith(transitData);
+    await API.fetchTransitData('Routes', 'setRoutes', mockSetData);
+    expect(mockSetData).toHaveBeenCalledWith({ type: 'setRoutes', payload: transitData });
   });
 });
