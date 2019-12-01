@@ -14,10 +14,10 @@ test('it renders without error', () => {
   const appComponent = findByDataTest(wrapper, 'component-search');
   expect(appComponent.length).toBe(1);
 });
-test('renders select drop down', () => {
+test('renders select drop downs', () => {
   const wrapper = setup();
   const dropdown = findByDataTest(wrapper, 'search-dropdown');
-  expect(dropdown.length).toBe(1);
+  expect(dropdown.length).toBe(3);
 });
 test('renders submit button', () => {
   const wrapper = setup();
