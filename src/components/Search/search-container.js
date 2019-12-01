@@ -5,9 +5,11 @@ import API from '../../utils/API';
 function Search() {
   React.useEffect(() => {
     API.fetchTransitData('Routes').then(res => {
-      // console.log(res)
+      setRoutes(res)
     })
   }, []); //end useEffect
+
+  const [routes, setRoutes] = React.useState([]);
   const [stop, setStop] = React.useState({ route: '', direction: '', stop: '' });
 
   const handleInputChange = e => {
@@ -20,7 +22,9 @@ function Search() {
   return (
     <div data-test="component-search">
       search
-      <SearchView handleInputChange={handleInputChange} />
+      <SearchView
+        routes={routes}
+        handleInputChange={handleInputChange} />
     </div>
   );
 };
