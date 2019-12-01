@@ -17,23 +17,17 @@ function Search() {
     handleConditionalData(stop.route, stop.direction);
   }, [stop]);
 
-  const requestAPI = (url, setData) => {
-    API.fetchTransitData(url).then(res => {
-      setData(res);
-    });
-  };
-
-  // request API with correct URL and setState
+  // request API with correct URL and pass setState
   const handleConditionalData = (routeId, directionId) => {
     // if there is not route or direction data being passed
     if (!routeId && !directionId) {
-      requestAPI("Routes", setRoutes);
+      API.fetchTransitData("Routes", setRoutes);
       // if there is just route data
     } else if (routeId && !directionId) {
-      requestAPI(`Directions/${routeId}`, setDirections);
+      API.fetchTransitData(`Directions/${routeId}`, setDirections);
       //  if there is both route and direction data
     } else if (routeId && directionId) {
-      requestAPI(`Stops/${routeId}/${directionId}`, setStops);
+      API.fetchTransitData(`Stops/${routeId}/${directionId}`, setStops);
     } else {
       return false;
     };

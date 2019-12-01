@@ -29,9 +29,7 @@ function Stops() {
   // get stop times from API
   const fetchTimes = () => {
     const url = `${stop.route}/${stop.direction}/${stop.stop}`;
-    API.fetchTransitData(url).then(res => {
-      setTimes(res);
-    });
+    API.fetchTransitData(url, setTimes)
   };
 
   // Render content

@@ -19,7 +19,7 @@ function StopsView({ currentTime, times }) {
               <td key={`${time.Description}_${index}`}>{time.Description}</td>
               <td key={`${time.DepartureText}_${index}`}>{time.DepartureText}</td>
             </tr>
-          ))};
+          ))}
         </tbody>
       </table>
     </div>
