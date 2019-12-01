@@ -1,12 +1,14 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
+import { findByDataTest } from './utils/testUtils';
 import App from './App';
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
+const setup = () => {
+  return mount(<App />)
+}
 
 test('it renders without error', () => {
-  const wrapper = shallow(<App />);
-  const appComponent = wrapper.find("[data-test='component-app']");
+  const wrapper = setup();
+  const appComponent = findByDataTest(wrapper, 'component-app');
   expect(appComponent.length).toBe(1);
 });
