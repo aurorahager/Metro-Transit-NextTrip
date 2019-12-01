@@ -9,21 +9,21 @@ const setup = (props = {}, state = null) => {
   return mount(<Search {...props} />);
 };
 
-test('it renders without error', () => {
-  const wrapper = setup();
-  const appComponent = findByDataTest(wrapper, 'component-search');
-  expect(appComponent.length).toBe(1);
-});
-test('renders select drop downs', () => {
-  const wrapper = setup();
-  const dropdown = findByDataTest(wrapper, 'search-dropdown');
-  expect(dropdown.length).toBe(3);
-});
-test('renders submit button', () => {
-  const wrapper = setup();
-  const submitButton = findByDataTest(wrapper, 'submit-button');
-  expect(submitButton.length).toBe(1);
-});
+// test('it renders without error', () => {
+//   const wrapper = setup();
+//   const appComponent = findByDataTest(wrapper, 'component-search');
+//   expect(appComponent.length).toBe(1);
+// });
+// test('renders select drop downs', () => {
+//   const wrapper = setup();
+//   const dropdown = findByDataTest(wrapper, 'search-dropdown');
+//   expect(dropdown.length).toBe(3);
+// });
+// test('renders submit button', () => {
+//   const wrapper = setup();
+//   const submitButton = findByDataTest(wrapper, 'submit-button');
+//   expect(submitButton.length).toBe(1);
+// });
 describe('state controlled input fields', () => {
   test('state updates with value from dropdown on change', () => {
     // const mockSetStop = jest.fn();
