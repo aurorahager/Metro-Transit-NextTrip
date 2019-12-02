@@ -43,7 +43,7 @@ function Stops() {
         <StopsView currentTime={currentTime} times={state.times} />
         {/* reset stop state when navigating back */}
         <Link id="link" to="/" onClick={() => setStop({ route: '', direction: '', stop: '' })}>
-          <i aria-hidden="true" class="left arrow icon"></i>
+          <i aria-hidden="true" className="left arrow icon"></i>
           Go Back
       </Link>
       </main>

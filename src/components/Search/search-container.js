@@ -34,7 +34,6 @@ function Search() {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    console.log(name, value);
     setStop({ ...stop, [name]: value });
   };
 
