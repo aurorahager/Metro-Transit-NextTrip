@@ -1,5 +1,3 @@
-import React from 'react';
-
 function SearchReducer(state, action) {
   switch (action.type) {
     case "setRoutes":

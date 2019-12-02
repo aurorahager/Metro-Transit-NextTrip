@@ -2,7 +2,7 @@ import React from 'react';
 
 function StopsView({ currentTime, times }) {
   return (
-    <div>
+    <div data-test="component-stops-view">
       <h1 data-test="current-time">{currentTime}</h1>
       <table data-test="stops-table">
         <thead>

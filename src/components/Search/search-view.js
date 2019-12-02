@@ -2,10 +2,10 @@ import React from 'react';
 
 function SearchView({ routes, directions, stops, handleInputChange, handleSubmit }) {
   return (
-    <div>
+    <div data-test="component-search-view">
       {/* route select */}
       <label htmlFor="selectRoute">Select a Route:</label>
-      <select name="route" id="selectRoutes" data-test="search-dropdown" onChange={handleInputChange}>
+      <select name="route" id="selectRoutes" data-test="search-dropdown-route" onChange={handleInputChange}>
         <option value={null}>Choose a Route</option>
         {routes.map(route => (
           <option key={route.Route} value={route.Route}>{route.Description}</option>
@@ -13,7 +13,7 @@ function SearchView({ routes, directions, stops, handleInputChange, handleSubmit
       </select>
       {/* direction select */}
       <label htmlFor="selectDirections">Select a Direction:</label>
-      <select name="direction" id="selectDirections" data-test="search-dropdown" onChange={handleInputChange}>
+      <select name="direction" id="selectDirections" data-test="search-dropdown-direction" onChange={handleInputChange}>
         <option value={null}>Choose a Direction</option>
         {directions.map(direction => (
           <option key={direction.Value} value={direction.Value}>{direction.Text}</option>
@@ -21,7 +21,7 @@ function SearchView({ routes, directions, stops, handleInputChange, handleSubmit
       </select>
       {/* stop select */}
       <label htmlFor="selectStop">Select a Stop:</label>
-      <select name="stop" id="selectStop" data-test="search-dropdown" onChange={handleInputChange}>
+      <select name="stop" id="selectStop" data-test="search-dropdown-stop" onChange={handleInputChange}>
         <option value={null}>Choose a Stop</option>
         {stops.map(stop => (
           <option key={stop.Value} value={stop.Value}>{stop.Text}</option>
