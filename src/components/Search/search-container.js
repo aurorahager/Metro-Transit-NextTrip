@@ -40,7 +40,7 @@ function Search() {
 
   const handleSubmit = () => {
     !stop.route || !stop.direction || !stop.stop ?
-      alert("select all") : setToStops(true);
+      alert("Please make a stop selection") : setToStops(true);
   };
 
   // render content

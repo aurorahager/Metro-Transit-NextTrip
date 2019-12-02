@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { TransitContext } from "../../context/transit-context";
 import SearchReducer from '../../reducers/search-reducer';
 import API from '../../utils/API';
+import Header from './stops-header';
 import StopsView from './stops-view';
+import './Stops.css';
 
 function Stops() {
 
-  const [currentTime, setCurrentTime] = React.useState(new Date().toLocaleTimeString());
+  const [currentTime, setCurrentTime] = React.useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   const [state, dispatch] = React.useReducer(SearchReducer, { times: [] });
   const [stop, setStop] = React.useContext(TransitContext);
 
@@ -24,7 +26,7 @@ function Stops() {
 
   // function to set time in state to current time
   const updateCurrentTime = () => {
-    setCurrentTime(new Date().toLocaleTimeString());
+    setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   };
 
   // get stop times from API
@@ -36,11 +38,15 @@ function Stops() {
   // Render content
   return (
     <div data-test="component-stops">
-      <StopsView currentTime={currentTime} times={state.times} />
-      {/* reset stop state when navigating back */}
-      <Link to="/" onClick={() => setStop({ route: '', direction: '', stop: '' })}>
-        Go Back
+      <Header />
+      <main className="main">
+        <StopsView currentTime={currentTime} times={state.times} />
+        {/* reset stop state when navigating back */}
+        <Link id="link" to="/" onClick={() => setStop({ route: '', direction: '', stop: '' })}>
+          <i aria-hidden="true" class="left arrow icon"></i>
+          Go Back
       </Link>
+      </main>
     </div>
   );
 };

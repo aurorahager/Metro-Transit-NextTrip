@@ -6,7 +6,7 @@ function SearchView({ routes, directions, stops, handleInputChange, handleSubmit
   return (
     <main className="wrapper" data-test="component-search-view">
       <div className="box aloneBox">
-        <img src={logo} alt="Metro Transit Logo" className="ui large image" />
+        <img id="homeImg" src={logo} alt="Metro Transit Logo" className="ui large image" />
       </div>
       <div className="box aloneBox" >
         <h1>Let Us Take You <span id="blue">Somewhere</span><span id="red">.</span></h1>
