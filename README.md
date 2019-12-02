@@ -39,9 +39,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 to run tests on this project:
 
 ```
+npm audit fix --force
 npm test
 ```
 Tests include testing for API calls and content rendering.
+
+**Note:** When installing the application the fsevents dependency is not installed which causes an error when running tests. From what I can tell from the internet this is a bug with the newer version of node. Some people found deleting the node_modules, package-lock and reinstalling fixed this. I found tha running `npm audit fix --force` was the only way I could fix this issue. However, this may not be needed depending on your version of node or other variables.
 
 ## Assumptions
 - Testing will probably the most challenging aspect of this application. I have only seen some basic testing for React with Jest but have not used it myself.
